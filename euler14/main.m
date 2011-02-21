@@ -3,13 +3,14 @@
 //  euler14
 //
 //  Created by Brian Morton on 2/21/11.
+//  Copyright 2011 The San Diego Reader. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface Collatz : NSObject {
+    NSArray *terms;
     long startingTerm;
-    int numberOfTerms;
 }
 -(Collatz*)initWithStartingTerm:(long)number;
 -(int)numberOfTerms;
@@ -17,20 +18,19 @@
 -(long)startingTerm;
 -(void)generateTerms;
 
-//@property (retain) NSArray *terms;
-@property (assign) int numberOfTerms;
+@property (retain) NSArray *terms;
+//@property (assign) int startingTerm;
 
 @end
 
 @implementation Collatz
 
-@synthesize numberOfTerms;
+@synthesize terms;
 
 -(Collatz*)initWithStartingTerm:(long)number {
     self = [super init];
     
     if (self) {
-        numberOfTerms = 0;
         [self setStartingTerm:number];
     }
     
@@ -50,8 +50,10 @@
 
 -(void)generateTerms {
     if (startingTerm > 0) {
+        NSNumber *objectForStartingTerm = [[NSNumber alloc]initWithLong:startingTerm];
+        NSMutableArray *workingArray = [[NSMutableArray alloc] initWithObjects:objectForStartingTerm, nil];
+        [objectForStartingTerm release];
         long currentNumber = startingTerm;
-        numberOfTerms = 1;
         
         while (currentNumber != 1) {
             if (currentNumber % 2 == 0) {
@@ -59,14 +61,24 @@
             } else {
                 currentNumber = ((3*currentNumber)+1);
             }
-            numberOfTerms++;
+            NSNumber *objectForCurrentNumber = [[NSNumber alloc]initWithLong:currentNumber];
+            [workingArray addObject:objectForCurrentNumber];
+            [objectForCurrentNumber release];
         }
+        [terms release];
+        terms = [NSArray arrayWithArray:workingArray];
+        [workingArray release];
     } else {
-        numberOfTerms = 0;
+        terms = nil;
     }
 }
 
+-(int)numberOfTerms {
+    return (int)[terms count];
+}
+
 -(void)dealloc {
+    [terms release];
     [super dealloc];
 }
 
@@ -74,14 +86,17 @@
 
 int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+
+    // insert code here...
+    NSLog(@"Starting the run loop.");
+    
+    
     
     int highestTermCount = 0;
     long startingTermForHighest = 0;
-
-    Collatz *testForLength = [[Collatz alloc] initWithStartingTerm:0];
     
     for (long i = 1; i <= 1000000; i++) {
-
+        Collatz *testForLength = [[Collatz alloc] initWithStartingTerm:1];
         testForLength.startingTerm = i;
         
         if ([testForLength numberOfTerms] > highestTermCount) {
@@ -90,9 +105,9 @@ int main (int argc, const char * argv[]) {
         }
         
         printf("%i: %i\n", i, [testForLength numberOfTerms]);
+        [testForLength release];
     }
     
-    [testForLength release];
     
     printf("Highest term and count was %i with %i terms.", startingTermForHighest, highestTermCount);
 
