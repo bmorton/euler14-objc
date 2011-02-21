@@ -1,0 +1,14 @@
+.DS_Store
+*.swp
+*~.nib
+
+euler14.xcodeproj/build/
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+
+*.mode1v3
+*.mode2v3
+
+euler14.xcodeproj/project.xcworkspace/xcuserdata
