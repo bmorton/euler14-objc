@@ -27,7 +27,7 @@
 		D33B78371312EB5300EC9C43 /* euler14 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = euler14; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B783B1312EB5300EC9C43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D33B783E1312EB5300EC9C43 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D33B78411312EB5300EC9C43 /* euler14-Prefix.pch */ = {isa = PBXFileReference; path = "euler14-Prefix.pch"; sourceTree = "<group>"; };
+		D33B78411312EB5300EC9C43 /* euler14-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "euler14-Prefix.pch"; sourceTree = "<group>"; };
 		D33B78421312EB5300EC9C43 /* euler14.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = euler14.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
